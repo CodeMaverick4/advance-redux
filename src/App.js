@@ -5,9 +5,10 @@ import Products from './components/Shop/Products';
 
 function App() {
   const cartStatus = useSelector(state => state.toogleCart)
+  const totalItems =useSelector(state => state.cart.totalItems)
   return (
     <Layout>
-      {cartStatus &&
+      {cartStatus && totalItems >0 &&
         <Cart />}
       <Products />
     </Layout>

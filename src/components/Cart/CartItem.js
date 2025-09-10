@@ -1,8 +1,19 @@
+import { useDispatch } from 'react-redux';
 import classes from './CartItem.module.css';
+import { decrementQuantityBy1, incrementQuantityBy1, removeItem } from '../../redux/slice/cartSlice';
 
 const CartItem = (props) => {
-  const { title, quantity, total, price } = props.item;
 
+  const { title, quantity, total, price } = props.item;
+  const dispatch = useDispatch();
+  const handleDecrement = () => {
+    if (quantity === 1) {
+      dispatch(removeItem(title));
+    }
+    else {
+      dispatch(decrementQuantityBy1(title));
+    }
+  }
   return (
     <li className={classes.item}>
       <header>
@@ -14,11 +25,11 @@ const CartItem = (props) => {
       </header>
       <div className={classes.details}>
         <div className={classes.quantity}>
-          x <span>{quantity}</span>
+          <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button>-</button>
-          <button>+</button>
+          <button onClick={handleDecrement}>-</button>
+          <button onClick={() => dispatch(incrementQuantityBy1(title))}>+</button>
         </div>
       </div>
     </li>
