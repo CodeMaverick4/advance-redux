@@ -37,32 +37,22 @@ const cartSlice = createSlice({
         },
 
         incrementQuantityBy1: (state, action) => {
-            const title = action.payload;
-            const item = state.items.find(item => item.title === title);
+            const id = action.payload.id;
+            const item = state.items.find(item => item.id === id);
 
             if (item) {
                 item.quantity += 1;
-                item.total = item.price * item.quantity 
-                // state.totalItems += 1;
+                item.total = item.price * item.quantity                 
             }
         },
 
         decrementQuantityBy1: (state, action) => {
-            const title = action.payload;
-            const item = state.items.find(item => item.title === title);
+            const id = action.payload.id;
+            const item = state.items.find(item => item.id === id);
 
             if (item) {
                 item.quantity -= 1;
                 item.total = item.price * item.quantity 
-
-                // // remove item completely if quantity reaches 0
-                // if (item.quantity <= 0) {
-                //     state.items = state.items.filter(i => i.title !== title);
-                // }
-
-                // if (state.totalItems <= 0) {
-                //     state.showCart = false;
-                // }
             }
         },
 

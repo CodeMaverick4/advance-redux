@@ -29,3 +29,12 @@ button:active {
   border-color: #1ac5d1;
   color: white;
 }
+
+.error-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 60px;
+  color: white;
+  background-color: rgb(166, 56, 56);
+}
