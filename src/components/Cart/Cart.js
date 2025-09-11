@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from '../UI/Card';
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
+import { useEffect } from 'react';
+import { loadCartItems } from '../../redux/slice/cartThunk';
 
 const Cart = (props) => {
   const items = useSelector(state => state.cart.items)
+  
   console.log(items);
   return (
     <Card className={classes.cart}>
@@ -12,7 +15,7 @@ const Cart = (props) => {
       <ul>
         {items.map(item =>
           <CartItem
-            item={{ title: item.title, quantity:item.quantity,total: item.total, price: item.price }}
+            item={{ title: item.title, quantity: item.quantity, total: item.total, price: item.price, id:item.id }}
           />
         )}
       </ul>
